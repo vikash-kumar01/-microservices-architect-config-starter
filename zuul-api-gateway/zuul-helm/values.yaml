@@ -1,0 +1,29 @@
+
+replicaCount: 1
+
+image:
+  repository: deekshithsn/zuul
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+service:
+  type: NodePort
+  port: 9999
+  targetport: 9999
+  nodeport: 32470
+  name: zuul-api-gateway
+
+container:
+  name: zuul-api-gateway
+
+pa:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: app
+          operator: In
+          values:
+          - react-ui
+      topologyKey: "kubernetes.io/hostname"

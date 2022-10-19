@@ -1,0 +1,1 @@
+Once ui application is deployed you can access the application at <nodeip>:<nodeport>

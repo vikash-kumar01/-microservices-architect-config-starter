@@ -1,0 +1,16 @@
+
+replicaCount: 1
+
+image:
+  repository: deekshithsn/ui
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+service:
+  type: NodePort
+  port: 8080
+  targetport: 8080
+
+container:
+  name: react-ui

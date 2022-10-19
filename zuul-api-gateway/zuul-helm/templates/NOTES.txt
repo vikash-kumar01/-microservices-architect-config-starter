@@ -1,0 +1,7 @@
+if application is deployed then please go ahead deploy other api services 
+
+make sure api services names are 
+offer 
+shoe
+wishlist
+cart

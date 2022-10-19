@@ -1,0 +1,1 @@
+This service will deployed with clusterip on pods inside cluster will be accessable 

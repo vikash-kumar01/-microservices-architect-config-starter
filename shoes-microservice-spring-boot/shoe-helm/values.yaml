@@ -1,0 +1,16 @@
+
+
+replicaCount: 1
+
+image:
+  repository: deekshithsn/shoe
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 1002
+  targetport: 1002
+  name: shoe
+
+container:
+  name: shoe-ui
