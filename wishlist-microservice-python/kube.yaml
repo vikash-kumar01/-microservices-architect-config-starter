@@ -1,0 +1,36 @@
+  apiVersion: "v1" 
+  kind: "Service"
+  metadata:
+    labels:
+      app: "wishlist-ui"
+    name: "wishlist"
+  spec:
+    ports:
+    - name: "http"
+      port: 1003
+      targetPort: 5000
+    selector:
+      app: "wishlist-ui" 
+---  
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: "wishlist-ui"
+    labels: 
+      app: wishlist-ui
+  spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          app: "wishlist-ui"
+    template:
+      metadata:
+        labels:
+          app: wishlist-ui
+      spec:
+        containers:
+          - name: "shoe-ui"
+            image: "deekshithsn/wishlist"
+            imagePullPolicy: "IfNotPresent"
+            ports:
+              - containerPort: 5000

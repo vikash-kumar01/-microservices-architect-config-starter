@@ -1,0 +1,36 @@
+  apiVersion: "v1" 
+  kind: "Service"
+  metadata:
+    labels:
+      app: "cart-ui"
+    name: "cart"
+  spec:
+    ports:
+    - name: "http"
+      port: 1004
+      targetPort: 1004
+    selector:
+      app: "cart-ui" 
+---  
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: "cart-ui"
+    labels: 
+      app: cart-ui
+  spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          app: "cart-ui"
+    template:
+      metadata:
+        labels:
+          app: cart-ui
+      spec:
+        containers:
+          - name: "cart-ui"
+            image: "deekshithsn/cart"
+            imagePullPolicy: "IfNotPresent"
+            ports:
+              - containerPort: 1004

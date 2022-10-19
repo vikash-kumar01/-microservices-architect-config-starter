@@ -1,0 +1,36 @@
+  apiVersion: "v1" 
+  kind: "Service"
+  metadata:
+    labels:
+      app: "offer-ui"
+    name: "offer"
+  spec:
+    ports:
+    - name: "http"
+      port: 1001
+      targetPort: 1001
+    selector:
+      app: "offer-ui" 
+---  
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: "offer-ui"
+    labels: 
+      app: offer-ui
+  spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          app: "offer-ui"
+    template:
+      metadata:
+        labels:
+          app: offer-ui
+      spec:
+        containers:
+          - name: "offer-ui"
+            image: "deekshithsn/offer"
+            imagePullPolicy: "IfNotPresent"
+            ports:
+              - containerPort: 1001
